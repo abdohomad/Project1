@@ -8,8 +8,7 @@ A C++ compiler
 How to Run the Code:
 1-Clone or download the code to your local machine
 2-Open the terminal or command prompt in the directory where the code is stored
-Compile the code by entering g++ -o data_reader DataReader.cpp in the terminal
-Run the compiled code by entering ./data_reader in the terminal
+Run your code using visual studio 2022.
 Follow the menu options to perform various operations on the data array
 
 Data File:
