@@ -1,16 +1,16 @@
 #include "DataReader.h"
 #include <iostream>
 #include<fstream>
-using namespace std;
 
 
-void DataReader::readData(string fileName)
+//read data from a file into an array
+void DataReader::readData(std::string fileName)
 {
     count = 0;
-    ifstream fileReder;
+    std::ifstream fileReder;
     fileReder.open(fileName);
     if (!fileReder) {
-        cout << "Error opening input file: " << fileName << endl;
+        std::cout << "Error opening input file: " << fileName << std::endl;
         return;
     }
     for (int i = 0; i < 10; i++) {
@@ -23,18 +23,20 @@ void DataReader::readData(string fileName)
 
 }
 
-pair<int, int> DataReader::findNumber(int number)
+//Check if a certain integer exist
+std::pair<int, int> DataReader::findNumber(int number)
 {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (data[i][j] == number) {
-                    return make_pair(i, j);
+                    return std::make_pair(i, j);
                 }
             }
         }
-        return make_pair(-1, -1);
+        return std::make_pair(-1, -1);
 }
 
+//A function that adds a new integer to the end of the array if the array not full
 void DataReader::addNumber(int number)
 {
     try {
@@ -47,49 +49,52 @@ void DataReader::addNumber(int number)
             int col = count % 10;
             data[row][col] = number;
             count++;
-            cout << "The number: "<< " " << number << " has been added successfully" << endl;
+            std::cout << "The number: "<< " " << number << " has been added successfully" << std::endl;
         }
         
     }
     catch (const char* e) {
-        cout << e << endl;
+        std::cout << e << std::endl;
     }
 }
 
+//A function that can modify the value of an integer when called with the index of the integer in
+// the array and return the new value and old value back to the user.
 void DataReader::modifyNumber(int index, int number)
 {
     try {
-        if (index < 0 || index >= count) {
+        if (index < 0 || index >= count) { // Check if the index is within the range of the array
             throw ("Index out of range.");
         }
-        int oldValue = data[index / 10][index % 10];
+        int oldValue = data[index / 10][index % 10]; // Save the old value at the index
         data[index / 10][index % 10] = number;
-        cout << "Old value: " << oldValue << endl;
-        cout << "New value: " << number << endl;
+        std::cout << "Old value: " << oldValue << std::endl;
+        std::cout << "New value: " << number << std::endl;
     }
-    catch (const char* e) {
-        cout << e<< endl;
+    catch (const char* e) { // Catch invalid argument exceptions and display custome msg. 
+        std::cout << e<< std::endl;
     }
 }
 
+//
 void DataReader::RemoveNumber(int index)
 {
 
     try{
-        if (index < 0 || index >= count) {
+        if (index < 0 || index >= count) {// Check if the index is within the range of the array
             throw ("Index out of range.");
         }
-        int oldValue = data[index / 10][index % 10];
+        int oldValue = data[index / 10][index % 10]; // Save the old value at the index
 
         for (int i = index; i < count - 1; i++) {
             data[i / 10][i % 10] = data[(i + 1) / 10][(i + 1) % 10];
         }
-        count--;
+        count--; // Decrement the count of integers in the array
 
-        cout << "The value: " << " " << oldValue << " " << "has been removed." << endl;
+        std::cout << "The value: " << " " << oldValue << " " << "has been removed." << std::endl;
     }
 
-    catch (const char* e) {
-            cout << e << endl;
+    catch (const char* e) {  // Catch invalid argument exceptions and display custome msg. 
+        std::cout << e << std::endl;
     }
 }

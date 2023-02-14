@@ -1,5 +1,5 @@
 #include <string>
-using namespace std;
+#include <string>
 
 class DataReader{
 
@@ -9,8 +9,8 @@ class DataReader{
         int count;
 
     public:
-        void readData(string fileName);
-        pair<int, int> findNumber(int number);
+        void readData(std::string fileName);
+        std::pair<int, int> findNumber(int number);
         void addNumber(int number);
         void modifyNumber(int index, int number);
         void RemoveNumber(int index);

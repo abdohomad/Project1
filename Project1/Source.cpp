@@ -1,59 +1,56 @@
 #include <iostream>
-#include <fstream>
 #include "DataReader.h"
-
-using namespace std;
 
 
 void displayMenu();
 
 int main() {
     DataReader datareader{};
-    string fileName = "data.txt";
+    std::string fileName = "data.txt";
     int choice;
     int number;
     int index;
-    pair<int, int> result;
+    std::pair<int, int> result;
     datareader.readData(fileName);
     while (true) {
         displayMenu();
-        cin >> choice;
+        std::cin >> choice;
 
         switch (choice) {
         
         case 1:
-            cout << "Enter a number to find: ";
-            cin >> number;
+            std::cout << "Enter a number to find: ";
+            std::cin >> number;
             result = datareader.findNumber(number);
             if (result.first == -1) {
-                cout << "Number not found." << endl;
+                std::cout << "Number not found." << std::endl;
             }
             else {
-                cout << "Number found at index [" << result.first << "][" << result.second << "]." << endl;
+                std::cout << "Number found at index [" << result.first << "][" << result.second << "]." << std::endl;
             }
             break;
         case 2:
-            cout << "Enter a new number to add: ";
-            cin >> number;
+            std::cout << "Enter a new number to add: ";
+            std::cin >> number;
             datareader.addNumber(number);
             break;
         case 3:
-            cout << "Enter an index to modify: ";
-            cin >> index;
-            cout << "Enter a new number: ";
-            cin >> number;
+            std::cout << "Enter an index to modify: ";
+            std::cin >> index;
+            std::cout << "Enter a new number: ";
+            std::cin >> number;
             datareader.modifyNumber(index, number);
             break;
         case 4:
-            cout << "Enter an index to remove a value: ";
-            cin >> index;
+            std::cout << "Enter an index to remove a value: ";
+            std::cin >> index;
             
             datareader.RemoveNumber(index);
             break;
         case 5:
             return 0;
         default:
-            cout << "Invalid choice. Try again." << endl;
+            std::cout << "Invalid choice. Try again." << std::endl;
             break;
         }
     }
@@ -62,11 +59,11 @@ int main() {
 }
 
 void displayMenu() {
-    cout << "Menu:" << endl;
-    cout << "1. Find a number in the array" << endl;
-    cout << "2. Add a new number to the end of the array" << endl;
-    cout << "3. Modify a number at a specific index" << endl;
-    cout << "4. Remove data from the array" << endl;
-    cout << "5. Exit" << endl;
-    cout << "Enter your choice: ";
+    std::cout << "Menu:" << std::endl;
+    std::cout << "1. Find a number in the array" << std::endl;
+    std::cout << "2. Add a new number to the end of the array" << std::endl;
+    std::cout << "3. Modify a number at a specific index" << std::endl;
+    std::cout << "4. Remove data from the array" << std::endl;
+    std::cout << "5. Exit" << std::endl;
+    std::cout << "Enter your choice: ";
 }
